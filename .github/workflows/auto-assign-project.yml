@@ -7,7 +7,8 @@ on:
     types: [opened, labeled]
   issue_comment:
     types: [created]
-
+#env:
+#  REPO_TOKEN: {{ secrets.AUTO_PROJECT_PAT }} 
 jobs:
   automate-project-columns:
     runs-on: ubuntu-latest
@@ -16,5 +17,5 @@ jobs:
         with:
           project: Team Backlog
           column: New
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          repo-token: ${{ secrets.AUTO_PROJECT_PAT }}
     #     column_name: 'No Status'
