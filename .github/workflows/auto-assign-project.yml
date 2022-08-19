@@ -9,6 +9,7 @@ on:
     types: [created]
 env:
   MY_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  BACKLOG_BOARD: 'https://github.com/users/craig8/projects/4'
 
 jobs:
   assign_one_project:
@@ -19,13 +20,13 @@ jobs:
       uses: srggrs/assign-one-project-github-action@1.3.1
       if: github.event.action == 'opened'
       with:
-        project: 'https://github.com/orgs/eclipse-volttron/projects/3'
+        project: '${{ env.BACKLOG_BOARD}}' 
 
-    - name: Assign issues and pull requests with `bug` label to project 3
-      uses: srggrs/assign-one-project-github-action@1.3.1
-      if: |
-        contains(github.event.issue.labels.*.name, 'bug') ||
-        contains(github.event.pull_request.labels.*.name, 'bug')
-      with:
-        project: 'https://github.com/orgs/eclipse-volttron/projects/3'
-        column_name: 'No Status'
+    # - name: Assign issues and pull requests with `bug` label to project 3
+    #   uses: srggrs/assign-one-project-github-action@1.3.1
+    #   if: |
+    #     contains(github.event.issue.labels.*.name, 'bug') ||
+    #     contains(github.event.pull_request.labels.*.name, 'bug')
+    #   with:
+    #     project: 'https://github.com/orgs/eclipse-volttron/projects/3'
+    #     column_name: 'No Status'
